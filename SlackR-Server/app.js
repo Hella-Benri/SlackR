@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 // pg db:
-var user = require('./routes/user');
+var db = require('./routes/dbconnect');
 
 var app = express();
 
@@ -26,8 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-// pg db:
-app.use('/user', user);
+// pg db connect:
+app.use('/connect', db.connect);
+app.post('/createUser', db.createUser);
+app.get('/retrieveUser', db.retrieveUser);
+// app.use('/retrieveUser', user.retrieveUser);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
