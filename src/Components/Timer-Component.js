@@ -4,8 +4,15 @@ class Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            secondsElapsed: 0
+            secondsElapsed: 0,
+            bronze: 'https://i.imgur.com/7bVuUq7.jpg',
+            silver: 'https://i.imgur.com/5fUKAiJ.jpg', 
+            gold: 'https://i.imgur.com/g3WapOn.jpg',
+            platinum: 'https://i.imgur.com/mwvRFBS.jpg',
+            master: 'https://i.imgur.com/Kj6v6RT.jpg',
+            grandMaster: 'https://i.imgur.com/xvs2acT.jpg'
         }
+
     }
 
     tick() {
@@ -15,6 +22,20 @@ class Timer extends Component {
             }));
         } else {
             //do nothing
+        }
+
+        if(this.state.secondsElapsed >= 75) {
+            this.rankBackground = this.state.grandMaster;
+        } else if( this.state.secondsElapsed >= 60) {
+            this.rankBackground = this.state.master;
+        } else if( this.state.secondsElapsed >= 45) {
+            this.rankBackground = this.state.platinum;
+        } else if( this.state.secondsElapsed >= 30) {
+            this.rankBackground = this.state.gold;
+        } else if( this.state.secondsElapsed >= 15) {
+            this.rankBackground = this.state.silver;
+        } else {
+            this.rankBackground = this.state.bronze;
         }
     }
 
@@ -47,7 +68,7 @@ class Timer extends Component {
             <div>
                 <h2> Jong's Timer </h2>
                 <p> {this.timeFormat(this.state.secondsElapsed)} </p>
-                <p id="message"></p>
+                <img src={this.rankBackground} />
             </div>
         )
     }
