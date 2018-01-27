@@ -26,12 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-// pg db connect:
-app.use('/connect', db.connect);
-app.post('/createUser', db.createUser);
-app.get('/retrieveUser', db.retrieveUser);
-// app.use('/retrieveUser', user.retrieveUser);
-
+app.get('/retrieveUsers', db.getUsers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
