@@ -9,6 +9,7 @@ const db = {};
 db.conn = pgp(conString);
 
 const userController = {
+  // sample querying for testing
   getUsers(req, res, next) {
     const query = "SELECT firstname, lastname FROM emps ORDER BY lastname, firstname";
     db.conn.many(query)
