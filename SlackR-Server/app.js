@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-// pg db:
+// postgres db:
 var db = require('./routes/dbconnect');
 
 var app = express();
