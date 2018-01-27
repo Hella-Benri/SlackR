@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var pg = require('pg');
 //or native libpq bindings
 //var pg = require('pg').native
@@ -13,10 +15,10 @@ client.connect(function(err) {
     if(err) {
       return console.error('error running query', err);
     }
-    console.log(result.rows[0].theTime);
+    console.log('Connected to SlackRDB at', result.rows[0].theTime);
     //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
     client.end();
   });
 });
 
-module.exports = client;
+module.exports = client.connect;
