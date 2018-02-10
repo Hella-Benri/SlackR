@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class CookieClicker extends Component {
     constructor(props) {
         super(props);
+        this.cookiePicture = 'https://i.imgur.com/vY5BRa2.png';
         this.state = {
             numOfClicks: 0,
             cookie1: 'https://i.imgur.com/vY5BRa2.png',
@@ -17,10 +18,10 @@ class CookieClicker extends Component {
             cookie10: 'https://i.imgur.com/uGdDOop.png'
 
         }
-
     }
 
     click() {
+
         this.setState((prevState) => ({
             numOfClicks: prevState.numOfClicks + 1
         }));
@@ -58,11 +59,9 @@ class CookieClicker extends Component {
 
     
     componentDidMount() {
-        let cookiePicture = this.state.cookie1
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval);
     }
 
     render() {
@@ -70,8 +69,9 @@ class CookieClicker extends Component {
             <div>
                 <h2> COOKIE CLICKER </h2>
                 <p> {this.state.numOfClicks} </p>
-                <img src={this.rankBackground} />
-                <button type="button" onClick={this.click.bind(this)}> CLICK ME </button>
+                <br/>
+                <img src={this.cookiePicture} onClick={this.click.bind(this)}/>
+                
             </div>
         )
     }
