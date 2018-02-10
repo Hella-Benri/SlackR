@@ -58,7 +58,8 @@ const userController = {
     let query2 = 'hey'
     console.log('QUERY', query2);
     // let query = "SELECT * FROM emps WHERE firstname= " + "'" + firstname + "'" + "";
-    let query = "SELECT * FROM emps WHERE firstname='Jongsoo'";
+    // let query = "SELECT * FROM emps WHERE firstname='Kelly'";
+    let query = "SELECT * FROM emps WHERE firstname=" + "'" + firstnameToVerify + "'" + "";
     console.log('heyyy', query);
     db.conn.many(query)
       .then(verifiedUser => {

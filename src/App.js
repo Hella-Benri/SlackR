@@ -11,9 +11,8 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  getUsers = () => {
     axios.get('/retrieveUsers', {
-      
     })
     .then(function (response) {
       console.log(response);
@@ -25,8 +24,8 @@ class App extends Component {
 
   addUserToUsersTable = () => {
     axios.post('/createUser', {
-      firstname: 'Jongsoo',
-      lastname: 'Yoon'
+      firstname: 'Kelly',
+      lastname: 'Gilliam'
     })
     .then(function (response) {
       console.log(response);
@@ -38,8 +37,8 @@ class App extends Component {
 
   verifyUser = () => {
     axios.post('/verifyUser', {
-      firstnameToVerify: 'Jongsoo',
-      lastnameToVerify: 'Yoon'
+      firstnameToVerify: 'Kelly',
+      lastnameToVerify: 'Gilliam'
     })
     .then(function (response) {
       console.log('USER VERIFIED!', response);
@@ -56,6 +55,7 @@ class App extends Component {
         <Timer/>
         <button style={{'position': 'absolute', 'top': '100px', 'zIndex': 4}} onClick={() => {this.addUserToUsersTable()}}>{'Add user'}</button>
         <button style={{'position': 'absolute', 'top': '200px', 'zIndex': 4}} onClick={() => {this.verifyUser()}}>{'Verify user'}</button>
+        <button style={{'position': 'absolute', 'top': '300px', 'zIndex': 4}} onClick={() => {this.getUsers()}}>{'Get Users'}</button>        
       </div>
     );
   }
