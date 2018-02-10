@@ -24,43 +24,30 @@ client.connect(function(err) {
 });
 
 const userController = {
-  // sample querying for testing
-  makeUsersTable(req, res, next) {
-    let userName = req.body.userName;
-    console.log(userName);
-    // let password = req.body.password;
-    let timer = 0.0;
-    const query = "CREATE TABLE USERS(ID INT PRIMARY KEY NOT NULL, userName TEXT NOT NULL, timer INT)";
-    db.conn.many(query)
-      .then(makeUsersTable => {
-        res.json(usersTable);
-        console.log('USER TABLE', usersTable);
-        // next();
-      })
-      .catch(err => {
-        console.log('error');
-        res.status(404).send(err);
-      })
-  },
+  // makeUsersTable(req, res, next) {
+  //   let userName = req.body.userName;
+  //   let timer = 0.0;
+  //   const query = "CREATE TABLE USERS(ID INT PRIMARY KEY NOT NULL, userName TEXT NOT NULL, timer INT)";
+  //   db.conn.many(query)
+  //     .then(makeUsersTable => {
+  //       res.json(usersTable);
+  //       console.log('USER TABLE', usersTable);
+  //       // next();
+  //     })
+  //     .catch(err => {
+  //       console.log('error');
+  //       res.status(404).send(err);
+  //     })
+  // },
   createUser(req, res, next) {
-    let firstname = req.body.firstname;
-    let lastname = req.body.lastname;
-    let query = "INSERT INTO emps (firstname, lastname) VALUES (" + "'" + firstname + "'" + "," + "'" + lastname + "'" + ")"
+    let query = "INSERT INTO emps (firstname, lastname) VALUES (" + "'" + req.body.firstname + "'" + "," + "'" + req.body.lastname + "'" + ")"
     db.conn.query(query, (err, res) => {
       console.log(err, res)
       // db.end()
     })
   },
   verifyUser(req, res, next) {
-    let firstnameToVerify = req.body.firstnameToVerify;
-    let lastnameToVerify = req.body.lastnameToVerify;
-    console.log(firstnameToVerify, lastnameToVerify);
-    let query2 = 'hey'
-    console.log('QUERY', query2);
-    // let query = "SELECT * FROM emps WHERE firstname= " + "'" + firstname + "'" + "";
-    // let query = "SELECT * FROM emps WHERE firstname='Kelly'";
-    let query = "SELECT * FROM emps WHERE firstname=" + "'" + firstnameToVerify + "'" + "";
-    console.log('heyyy', query);
+    let query = "SELECT * FROM emps WHERE firstname=" + "'" + req.body.firstnameToVerify + "'" + "";
     db.conn.many(query)
       .then(verifiedUser => {
         res.json(verifiedUser);
@@ -70,19 +57,8 @@ const userController = {
         console.log('error');
         res.status(404).send(err);
       })
-    
-      // .then(getUsers => {
-      //   res.json(verifiedUser);
-      //   console.log('USERS', verifiedUser);
-      //   // next();
-      // })
-      // .catch(err => {
-      //   console.log('error');
-      //   res.status(404).send(err);
-      // })
   },
   getUsers(req, res, next) {
-    // const query = "SELECT firstname, lastname FROM emps ORDER BY lastname, firstname";
     const query = "SELECT * FROM emps";
     db.conn.many(query)
       .then(getUsers => {

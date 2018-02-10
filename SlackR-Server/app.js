@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.get('/retrieveUsers', userController.getUsers);
-app.post('/makeUsersTable', userController.makeUsersTable);
+// app.post('/makeUsersTable', userController.makeUsersTable);
 app.post('/createUser', userController.createUser);
 app.post('/verifyUser', userController.verifyUser);
 
