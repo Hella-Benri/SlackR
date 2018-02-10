@@ -5,16 +5,16 @@ class CookieClicker extends Component {
         super(props);
         this.state = {
             numOfClicks: 0,
-            cookie1: '',
-            cookie2: '',
-            cookie3: '',
-            cookie4: '',
-            cookie5: '',
-            cookie6: '',
-            cookie7: '',
-            cookie8: '',
-            cookie9: '',
-            cookie10: ''
+            cookie1: 'https://i.imgur.com/vY5BRa2.png',
+            cookie2: 'https://i.imgur.com/ywJeCKc.png',
+            cookie3: 'https://i.imgur.com/lIBOUmU.png',
+            cookie4: 'https://i.imgur.com/pqkMxNu.png',
+            cookie5: 'https://i.imgur.com/547SPCW.png',
+            cookie6: 'https://i.imgur.com/3C7FWXG.png',
+            cookie7: 'https://i.imgur.com/BIt9NN3.png',
+            cookie8: 'https://i.imgur.com/AyNWLne.png',
+            cookie9: 'https://i.imgur.com/oiewtvY.png',
+            cookie10: 'https://i.imgur.com/uGdDOop.png'
 
         }
 
