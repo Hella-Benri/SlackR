@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timer from './Components/Timer-Component.js';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props, context) {
@@ -9,12 +10,39 @@ class App extends Component {
 
     }
   }
+
+  componentDidMount () {
+    axios.get('/retrieveUsers', {
+      
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  addUserToUsersTable = () => {
+    console.log('button clicked!');
+    axios.post('/createUser', {
+      firstname: 'Jongsoo',
+      lastname: 'Yoon'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   
   render() {
 
     return (
       <div className="App">
         <Timer/>
+        <button style={{'position': 'absolute', 'top': '100px', 'zIndex': 4}} onClick={() => {this.addUserToUsersTable()}}></button>
       </div>
     );
   }
