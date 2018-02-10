@@ -47,10 +47,10 @@ class CookieClicker extends Component {
             case 350:
                 this.cookiePicture = this.state.cookie8;
                 break;
-            case 350:
+            case 400:
                 this.cookiePicture = this.state.cookie9;
                 break;
-            case 350:
+            case 450:
                 this.cookiePicture = this.state.cookie10;
                 break;
         }

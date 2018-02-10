@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Timer from './Components/Timer-Component.js';
+import CookieClicker from './Components/Cookie-Clicker.js'
 import './App.css';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <Timer/>
+        <CookieClicker/>
       </div>
     );
   }
