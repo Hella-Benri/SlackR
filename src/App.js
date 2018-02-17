@@ -3,6 +3,7 @@ import Timer from './Components/Timer-Component.js';
 import CookieClicker from './Components/Cookie-Clicker.js'
 import './App.css';
 import axios from 'axios';
+import CircularJSON from 'circular-json';
 
 class App extends Component {
   constructor(props, context) {
@@ -10,6 +11,18 @@ class App extends Component {
     this.state = {
 
     }
+  }
+
+  componentDidMount() {
+    axios.get('/retrieveYoutubeFeed', { 
+    })
+    .then(function (response) {
+      // let parsedResponse = CircularJSON.parse(response);
+      console.log('RESPONSE', response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   getUsers = () => {
