@@ -5,17 +5,21 @@ var CircularJSON = require('circular-json');
 // let URL = 'https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM'
 // &part=snippet,contentDetails,statistics,status
 
-let URL = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM&channelId=UCCODtTcd5M1JavPCOr_Uydg&part=snippet,id&order=date&maxResults=20';
+// let URL = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM&channelId=UCCODtTcd5M1JavPCOr_Uydg&part=snippet,id&order=date&maxResults=20';
 
 // let URL = https://www.youtube.com/watch?v=JcrSgLMFays
+
+let URL = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=soccer&order=rating&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM';
 
 const youtubeController = {
   retrieveYoutubeFeed (req, res) {
     axios.get(URL, {
     })
     .then(function (response) {
-      let stringedResponse = CircularJSON.stringify(response);
-      console.log('response', stringedResponse);
+      let videos = response.data.items;
+      console.log('RETURNED VIDEOS', videos);
+      let stringedResponse = CircularJSON.stringify(videos);
+      // console.log('response', stringedResponse);
       // console.log('response', response.data.items);
       res.send(stringedResponse);
     })

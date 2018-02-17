@@ -9,21 +9,32 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-
+      returnedVideos: [],
+      currentVideoId: ''
     }
   }
 
-  componentDidMount() {
+  componentDidMount(that = this) {
     axios.get('/retrieveYoutubeFeed', { 
     })
     .then(function (response) {
-      // let parsedResponse = CircularJSON.parse(response);
-      console.log('RESPONSE', response);
+      let newReturnedVideos = [];
+      for (let i = 0; i < response.data.length; i++) {
+        let videoURL = "http://www.youtube.com/embed/" + response.data[i].id.videoId;
+        newReturnedVideos.push(<iframe className="ytplayer" type="text/html" width="640" height="360" src={videoURL} frameBorder="0"></iframe>)
+      }
+      that.setState({
+        returnedVideos: newReturnedVideos,
+      });
     })
     .catch(function (error) {
       console.log(error);
     });
   }
+
+  // componentDidUpdate () {
+  //   console.log(this.state.returnedVideos[0]);
+  // }
 
   getUsers = () => {
     axios.get('/retrieveUsers', {
@@ -60,8 +71,6 @@ class App extends Component {
     .catch(function (error) {
       console.log(error);
     });
-  }
-  // src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com" 
 
   render() {
 
@@ -69,10 +78,7 @@ class App extends Component {
       <div className="App">
         <Timer/>
         <CookieClicker/>
-        <iframe id="ytplayer" type="text/html" width="640" height="360"
-          src="https://www.youtube.com/embed/xqJBibhR07w"  
-          frameBorder="0">
-        </iframe>
+        <div>{this.state.returnedVideos}</div>
         <button style={{'position': 'absolute', 'top': '100px', 'zIndex': 4}} onClick={() => {this.addUserToUsersTable()}}>{'Add user'}</button>
         <button style={{'position': 'absolute', 'top': '200px', 'zIndex': 4}} onClick={() => {this.verifyUser()}}>{'Verify user'}</button>
         <button style={{'position': 'absolute', 'top': '300px', 'zIndex': 4}} onClick={() => {this.getUsers()}}>{'Get Users'}</button>        
