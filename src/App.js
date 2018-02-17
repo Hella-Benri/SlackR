@@ -3,7 +3,6 @@ import Timer from './Components/Timer-Component.js';
 import CookieClicker from './Components/Cookie-Clicker.js'
 import './App.css';
 import axios from 'axios';
-import CircularJSON from 'circular-json';
 
 class App extends Component {
   constructor(props, context) {
@@ -76,7 +75,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
         <Timer/>
