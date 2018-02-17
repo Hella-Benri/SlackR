@@ -15,7 +15,13 @@ class App extends Component {
   }
 
   componentDidMount(that = this) {
-    axios.get('/retrieveYoutubeFeed', { 
+    this.retrieveYoutubeVideos();
+  }
+
+  retrieveYoutubeVideos = (that = this) => {
+    axios.post('/retrieveYoutubeFeed', {
+      // you can repalce this query with a parameter value when you call it
+      searchQuery: 'yogscast' 
     })
     .then(function (response) {
       let newReturnedVideos = [];
@@ -31,10 +37,6 @@ class App extends Component {
       console.log(error);
     });
   }
-
-  // componentDidUpdate () {
-  //   console.log(this.state.returnedVideos[0]);
-  // }
 
   getUsers = () => {
     axios.get('/retrieveUsers', {

@@ -9,18 +9,17 @@ var CircularJSON = require('circular-json');
 
 // let URL = https://www.youtube.com/watch?v=JcrSgLMFays
 
-let URL = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=soccer&order=rating&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM';
+// let URL = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=soccer&order=rating&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM';
 
 const youtubeController = {
   retrieveYoutubeFeed (req, res) {
+    let URL = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + req.body.searchQuery + '&order=rating&type=video&videoDefinition=high&videoEmbeddable=true&key=AIzaSyCCsOkHMBalcACYIQaTUOapalxPn0Y5mbM';
     axios.get(URL, {
     })
     .then(function (response) {
       let videos = response.data.items;
       console.log('RETURNED VIDEOS', videos);
       let stringedResponse = CircularJSON.stringify(videos);
-      // console.log('response', stringedResponse);
-      // console.log('response', response.data.items);
       res.send(stringedResponse);
     })
     .catch(function (error) {

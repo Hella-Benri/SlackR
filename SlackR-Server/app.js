@@ -31,7 +31,8 @@ app.get('/retrieveUsers', userController.getUsers);
 // app.post('/makeUsersTable', userController.makeUsersTable);
 app.post('/createUser', userController.createUser);
 app.post('/verifyUser', userController.verifyUser);
-app.get('/retrieveYoutubeFeed', youtubeController.retrieveYoutubeFeed);
+app.post('/retrieveYoutubeFeed', youtubeController.retrieveYoutubeFeed);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
