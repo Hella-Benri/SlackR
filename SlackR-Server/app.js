@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 // postgres db:
 var userController = require('./routes/userController');
+var youtubeController = require('./routes/youtubeController');
 
 var app = express();
 
@@ -30,6 +31,8 @@ app.get('/retrieveUsers', userController.getUsers);
 // app.post('/makeUsersTable', userController.makeUsersTable);
 app.post('/createUser', userController.createUser);
 app.post('/verifyUser', userController.verifyUser);
+app.post('/retrieveYoutubeFeed', youtubeController.retrieveYoutubeFeed);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
