@@ -8,32 +8,34 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      returnedVideos: [],
-      currentVideoId: ''
+      returnedVideos: []
     }
   }
 
-  componentDidMount(that = this) {
+  componentDidMount() {
     this.retrieveYoutubeVideos();
   }
 
-  retrieveYoutubeVideos = (that = this) => {
+  retrieveYoutubeVideos = (that = this, userSearchQuery) => {
     axios.post('/retrieveYoutubeFeed', {
-      // you can repalce this query with a parameter value when you call it
-      searchQuery: 'yogscast' 
+      // you should replace this query with the userSearchQuery's value you will provide
+      searchQuery: 'yogscast'
     })
     .then(function (response) {
-      let newReturnedVideos = [];
-      for (let i = 0; i < response.data.length; i++) {
-        let videoURL = "http://www.youtube.com/embed/" + response.data[i].id.videoId;
-        newReturnedVideos.push(<iframe className="ytplayer" type="text/html" width="640" height="360" src={videoURL} frameBorder="0"></iframe>)
-      }
+      let newReturnedVideos = that.buildNewVideosArray(response.data);
       that.setState({
         returnedVideos: newReturnedVideos,
       });
     })
     .catch(function (error) {
       console.log(error);
+    });
+  }
+
+  buildNewVideosArray = (responseData) => {
+    return responseData.map(function(video){
+      let videoURL = "http://www.youtube.com/embed/" + video.id.videoId;
+      return <iframe className="ytplayer" type="text/html" width="640" height="360" src={videoURL} frameBorder="0"></iframe>;
     });
   }
 
