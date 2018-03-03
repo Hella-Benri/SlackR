@@ -6,8 +6,8 @@ const youtubeController = {
     axios.get(URL, {
     })
     .then(function (response) {
-      let videos = response.data.items;
-      res.send(videos);
+      // send arr of video objs
+      res.send(response.data.items);
     })
     .catch(function (error) {
       console.log('error', error);
